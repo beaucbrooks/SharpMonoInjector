@@ -97,6 +97,7 @@ namespace SharpMonoInjector.Gui.ViewModels
                 File.Exists(AssemblyPath) &&
                 !string.IsNullOrEmpty(InjectClassName) &&
                 !string.IsNullOrEmpty(InjectMethodName) &&
+                InjectedAssemblies.Count == 0 && // usually don't need to inject more than once; risk injecting same thing twice
                 !IsExecuting;
         }
 
@@ -246,7 +247,7 @@ namespace SharpMonoInjector.Gui.ViewModels
             }
         }
 
-        private string _injectClassName;
+        private string _injectClassName = "Loader";
         public string InjectClassName
         {
             get => _injectClassName;
@@ -257,7 +258,7 @@ namespace SharpMonoInjector.Gui.ViewModels
             }
         }
 
-        private string _injectMethodName;
+        private string _injectMethodName = "Load";
         public string InjectMethodName
         {
             get => _injectMethodName;
